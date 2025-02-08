@@ -3,18 +3,18 @@ volumes:
   pgdata:
 services:
   pagila:
-    image: postgres:17
+    image: postgres:14.15
     container_name: pagila
     environment:
       POSTGRES_PASSWORD: 123456
       POSTGRES_USER: postgres
     volumes:
-      - ./pagila-schema.sql:/docker-entrypoint-initdb.d/1-pagila-schema.sql
-      - ./pagila-schema-jsonb.sql:/docker-entrypoint-initdb.d/1-pagila-schema-jsonb.sql
-      - ./pagila-data.sql:/docker-entrypoint-initdb.d/2-pagila-data.sql
-      - ./restore-pagila-data-jsonb.sh:/docker-entrypoint-initdb.d/3-restore-pagila-data-jsonb.sh
-      - ./pagila-data-yum-jsonb.backup:/docker-entrypoint-initdb.d/pagila-data-yum-jsonb.backup
-      - ./pagila-data-apt-jsonb.backup:/docker-entrypoint-initdb.d/pagila-data-apt-jsonb.backup
+      - ./pagila/1-pagila-schema.sql:/docker-entrypoint-initdb.d/1-pagila-schema.sql
+      - ./pagila/1-pagila-schema-jsonb.sql:/docker-entrypoint-initdb.d/1-pagila-schema-jsonb.sql
+      - ./pagila/2-pagila-data.sql:/docker-entrypoint-initdb.d/2-pagila-data.sql
+      - ./pagila/3-pagila-data-yum-jsonb.backup:/docker-entrypoint-initdb.d/3-pagila-data-yum-jsonb.backup
+      - ./pagila/3-pagila-data-apt-jsonb.backup:/docker-entrypoint-initdb.d/3-pagila-data-apt-jsonb.backup
+      - ./pagila/3-restore-pagila-data-jsonb.sh:/docker-entrypoint-initdb.d/3-restore-pagila-data-jsonb.sh
       - pgdata:/var/lib/postgresql/data
     expose:
       - 5432
