@@ -15,6 +15,7 @@ services:
       - ./pagila/3-pagila-data-yum-jsonb.backup:/docker-entrypoint-initdb.d/3-pagila-data-yum-jsonb.backup
       - ./pagila/3-pagila-data-apt-jsonb.backup:/docker-entrypoint-initdb.d/3-pagila-data-apt-jsonb.backup
       - ./pagila/3-restore-pagila-data-jsonb.sh:/docker-entrypoint-initdb.d/3-restore-pagila-data-jsonb.sh
+      - ./sakila/1-sakila-schema.sql:/docker-entrypoint-initdb.d/1-sakila-schema.sql
       - pgdata:/var/lib/postgresql/data
     expose:
       - 5432
